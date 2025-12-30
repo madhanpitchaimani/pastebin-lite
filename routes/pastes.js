@@ -1,8 +1,8 @@
 const express = require("express");
 const { nanoid } = require("nanoid");
 
-const Paste = require("../models/Paste");
-const connectDB = require("../db/connect");
+const Paste = require("../models/Paste.js");
+const connectDB = require("../db/connect.js");
 
 const router = express.Router();
 

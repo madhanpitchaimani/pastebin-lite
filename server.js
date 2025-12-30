@@ -1,8 +1,8 @@
 require("dotenv").config();
 const express = require("express");
 
-const healthRoutes = require("./routes/health");
-const pasteRoutes = require("./routes/pastes");
+const healthRoutes = require("./routes/health.js");
+const pasteRoutes = require("./routes/pastes.js");
 
 const app = express();
 app.use(express.json());
