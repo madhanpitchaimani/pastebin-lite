@@ -27,6 +27,9 @@ Each paste can optionally expire based on time (TTL) or number of views.
 - Mongoose
 
 ---
+### Prerequisites
+- Node.js (LTS)
+- MongoDB Atlas account
 
 ## API Endpoints
 
