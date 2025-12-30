@@ -11,7 +11,12 @@ app.use("/api", healthRoutes);
 app.use("/api", pasteRoutes);
 app.use("/", pasteRoutes);
 
-// ✅ Explicit health check for Render & evaluators
+// Health check (no prefix)
+app.get("/healthz", (req, res) => {
+  res.status(200).json({ ok: true });
+});
+
+// Health check (API prefix)
 app.get("/api/healthz", (req, res) => {
   res.status(200).json({ ok: true });
 });
