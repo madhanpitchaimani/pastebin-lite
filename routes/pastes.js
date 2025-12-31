@@ -6,7 +6,7 @@ const connectDB = require("../db/connect.js");
 
 const router = express.Router();
 
-/* ---------- TIME HANDLING ---------- */
+
 function getNow(req) {
   if (process.env.TEST_MODE === "1") {
     const fakeTime = req.headers["x-test-now-ms"];
@@ -15,7 +15,7 @@ function getNow(req) {
   return Date.now();
 }
 
-/* ---------- CREATE PASTE ---------- */
+
 router.post("/pastes", async (req, res) => {
   await connectDB();
 
@@ -47,13 +47,15 @@ router.post("/pastes", async (req, res) => {
     remainingViews: max_views ?? null
   });
 
-  res.status(201).json({
-    id,
-    url: `${process.env.BASE_URL}/p/${id}`
-  });
+const baseUrl = process.env.BASE_URL?.trim();
+
+res.status(201).json({
+  id,
+  url: `${baseUrl}/p/${id}`
 });
 
-/* ---------- FETCH PASTE (API) ---------- */
+});
+
 router.get("/pastes/:id", async (req, res) => {
   await connectDB();
   const paste = await Paste.findById(req.params.id);
@@ -81,7 +83,7 @@ router.get("/pastes/:id", async (req, res) => {
   });
 });
 
-/* ---------- VIEW PASTE (HTML) ---------- */
+
 router.get("/p/:id", async (req, res) => {
   await connectDB();
   const paste = await Paste.findById(req.params.id);
